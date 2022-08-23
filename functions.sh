@@ -72,7 +72,7 @@ function set_ret_locks()
   printf "${Red} ssh $1@$2 mtree retention-lock set max-retention-period ${5} mtree /data/col1/$3 ${Color_Off}\n"
   ssh $1@$2 mtree retention-lock set max-retention-period ${5} mtree /data/col1/$3
   printf "${Red} ssh $1@$2 mtree retention-lock set automatic-retention-period ${6} mtree /data/col1/$3 ${Color_Off}\n"
-  ssh $1@$2 mtree retention-lock set automatic-retention-period ${6} mtree /data/col1/$3
+  echo yes | ssh $1@$2 mtree retention-lock set automatic-retention-period ${6} mtree /data/col1/$3
   printf "${Red} ssh $1@$2 mtree retention-lock set automatic-lock-delay ${7} mtree /data/col1/$3 ${Color_Off}\n"
   ssh $1@$2 mtree retention-lock set automatic-lock-delay ${7} mtree /data/col1/$3
 }
