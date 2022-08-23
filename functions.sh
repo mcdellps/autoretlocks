@@ -129,7 +129,7 @@ function create_mntpt_client()
   sudo chmod 0777 /mnt/nfs/$1
 }
 
-## cleanup_mntpt_client sysadmin ddve01 apps apps_mnt
+## cleanup_mntpt_client sysadmin ddve01 apps_mnt
 #
 function cleanup_mntpt_client()
 {
@@ -195,11 +195,18 @@ function add_files_to_nfs_client()
 {
 ## TSTAMP=$(date +%Y_%m_%d)   ### 04_04_2020-16_11_33
 TDATE=$(date +%Y%m%d-%H:%M)
+  var1=$(< ./count.txt)
+  ((var1=var1+1))
+  echo $var1 > ./count.txt
+
   printf "\n${Green} Adding files to the NFS mount point ${Color_Off}\n"
-  printf "${Red} sudo mkdir -p /mnt/nfs/$1/$TDATE ${Color_Off}\n"
-  mkdir -p /mnt/nfs/$1/$TDATE
-  touch /mnt/nfs/$1/$TDATE/backup.txt
-  cp ./license.txt /mnt/nfs/$1/$TDATE/license.txt
+  printf "${Red} touch /mnt/nfs/$1/backup_$var1.vbk ${Color_Off}\n"
+  printf "${Red} cp ./license.txt /mnt/nfs/$1/metadata_$var1.vbm ${Color_Off}\n"
+
+  touch /mnt/nfs/$1/backup_$var1.vbk
+  echo "Veeam Backup at $TDATE" >> /mnt/nfs/$1/backup_$var1.vbk
+  cp ./license.txt /mnt/nfs/$1/metadata_$var1.vbm
+
 }
 
 ## del_files_from_nfs_client apps_mnt
@@ -260,4 +267,13 @@ function out_ddboost()
   printf "\n${Green} List ddboost storage units ${Color_Off}\n"
   printf "${Red} ssh $1@$2 ddboost storage-unit show ${Color_Off}\n"
   ssh $1@$2 ddboost storage-unit show > ./ddboost.txt  
+}
+
+## list_ipaddress sysadmin ddve01
+#
+function list_ddboost_compression()
+{
+  printf "\n${Green} List IP address of the DD appliance ${Color_Off}\n"
+  printf "${Red} ssh $1@$2 net show config ${Color_Off}\n"
+  ssh $1@$2 net show config
 }
