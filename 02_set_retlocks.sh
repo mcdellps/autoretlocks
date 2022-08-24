@@ -17,5 +17,5 @@ mtreeAppNameRl=$mtreeAppName"-rl"
 list_mtree sysadmin ddve01
 # set_ret_locks sysadmin ddve01 $mtreeAppNameRl 720min 6day 6day 120min
 set_ret_locks sysadmin ddve01 $mtreeAppNameRl 720min 6day 6day 5min
-list_ret_locks sysadmin ddve01 $mtreeAppNameRl 
+# list_ret_locks sysadmin ddve01 $mtreeAppNameRl 
 list_mtree sysadmin ddve01

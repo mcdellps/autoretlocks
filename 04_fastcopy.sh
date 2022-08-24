@@ -14,6 +14,6 @@ source ./functions.sh
 
 mtreeAppNameRl=$mtreeAppName"-rl"
 
-DATE=$(date +%Y%m%d-%H:%M)
+# DATE=$(date +%Y%m%d-%H:%M)
+DATE=$(date +%Y%m%d_%H%M)
 run_fastcopy_mtree $Ddve_User $Ddve_Name $mtreeAppName $mtreeAppNameRl $DATE
-

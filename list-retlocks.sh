@@ -14,6 +14,6 @@ source ./functions.sh
 
 mtreeAppNameRl=$mtreeAppName"-rl"
 
-list_mtree $Ddve_User $Ddve_Name
+# list_mtree $Ddve_User $Ddve_Name
 list_ret_locks $Ddve_User $Ddve_Name $mtreeAppNameRl 
-list_mtree $Ddve_User $Ddve_Name
+# list_mtree $Ddve_User $Ddve_Name

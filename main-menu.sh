@@ -46,8 +46,9 @@ help_init()
 help_clean()
 {
 	echo -ne "$yellow Set-Env $clear                  Set the environment variables - DD_Administrator DD_Hostname Prod_MTree_Name \n\n"
-	echo -ne "$yellow Del-Mtree $clear                Deletes prod and Retention Lock (RL) MTree \n"
+	echo -ne "$yellow Del-Files-Nfs-Clnt-RL $clear    Remove files from NFS RL MTree mount-point (/mnt/nfs) \n"
 	echo -ne "$yellow Cleanup-Nfs-Dd-Clnt $clear      Removes NFS prod & RL MTree export and all related mount-points (/mnt/nfs) \n\n"
+	echo -ne "$yellow Del-Mtree $clear                Deletes prod and Retention Lock (RL) MTree \n"
 	echo -ne "$yellow Quit $clear      ..........     Exit \n"	
 }
 
@@ -152,7 +153,7 @@ echo -ne "\n$yellow               CLEANING UP RETENTION LOCKS $clear\n"
 echo -ne "\n$green                    M A I N    M E N U $clear\n\n"
 PS3=$'\n'"Press Enter to see the list of selections"$'\n'"Enter your selection (1-Help, 2-Exit, 3-5): "
 while true; do
-  select character in Help Quit Set-Env Cleanup-Nfs-Dd-Clnt Del-Mtree ; do
+  select character in Help Quit Set-Env Del-Files-Nfs-Clnt-RL Cleanup-Nfs-Dd-Clnt Del-Mtree ; do
     case $character in
     Help)
 	  help_clean
@@ -166,6 +167,11 @@ while true; do
 	 Del-Mtree)
 	  echo -ne "$green Deletes the MTree and the RL MTree $clear\n"
 	  ./07_del_mtree.sh $DD_User $DD_Hostname $DD_MTree  
+	  ;;
+	 Del-Files-Nfs-Clnt-RL)
+	  echo -ne "$green Deletes files from the NFS RL mount-point on the client $clear\n"
+	  DD_MTreeRlMnt=$DD_MTree"-rl-mntpt"
+	  del_files_from_nfs_client $DD_MTreeRlMnt
 	  ;;
 	 Cleanup-Nfs-Dd-Clnt)
      DD_MTreeRl=$DD_MTree"-rl"

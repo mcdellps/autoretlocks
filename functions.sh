@@ -110,13 +110,13 @@ function run_fastcopy_mtree()
   ssh $1@$2 filesys fastcopy source /data/col1/$3 destination /data/col1/$4/$5 
 }
 
-## restore_fastcopy_mtree sysadmin ddve01 apps_rl 20220818 apps 
+## restore_fastcopy_mtree sysadmin ddve01 apps 20220818 
 #
 function restore_fastcopy_mtree()
 {
   printf "\n${Green} Restoring a fastcopy MTree ${Color_Off}\n"
   printf "${Red} ssh $1@$2 filesys fastcopy force source /data/col1/$1 destination /data/col1/$2/$3 ${Color_Off}\n"
-  ssh $1@$2 filesys fastcopy force source /data/col1/$3/$4 destination /data/col1/$5
+  ssh $1@$2 filesys fastcopy force source /data/col1/$3-rl/$4 destination /data/col1/$3
 }
 
 ## create_mntpt_client apps_mnt 
