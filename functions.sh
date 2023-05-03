@@ -145,7 +145,7 @@ function cleanup_mntpt_client()
 function add_nfs_dd()
 {
   printf "\n${Green} Exporting NFS path ${Color_Off}\n"
-  printf "${Red} ssh $1@$2 nfs export create $3 path /data/col1/$3 clients 192.168.50.0/24 ${Color_Off}\n"
+  printf "${Red} ssh $1@$2 nfs export create $3 path /data/col1/$3 clients 192.168.184.0/24 ${Color_Off}\n"
   ssh $1@$2 nfs export create $3 path /data/col1/$3 clients 192.168.184.0/24
 }
 
